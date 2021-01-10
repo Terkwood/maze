@@ -28,13 +28,10 @@ onready var ground_ray = $GroundRay
 var mouse_motion = Vector2()
 var gravity_speed = 0
 
-puppet var puppet_transform
-
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	ground_ray.enabled = true
 	_update_movement_label()
-	puppet_transform = transform
 
 func _physics_process(delta):
 	rotate_y(deg2rad(20)* - mouse_motion.x * sensitivity_x * delta)
@@ -73,20 +70,17 @@ func _input(event):
 func _axis():
 	var direction = Vector3()
 	
-	if _is_chat_blocking_input():
-		pass
-	else:
-		if Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_UP):
-			direction -= get_global_transform().basis.z.normalized()
-			
-		if Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_DOWN):
-			direction += get_global_transform().basis.z.normalized()
-			
-		if Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_LEFT):
-			direction -= get_global_transform().basis.x.normalized()
-			
-		if Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_RIGHT):
-			direction += get_global_transform().basis.x.normalized()
+	if Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_UP):
+		direction -= get_global_transform().basis.z.normalized()
+		
+	if Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_DOWN):
+		direction += get_global_transform().basis.z.normalized()
+		
+	if Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_LEFT):
+		direction -= get_global_transform().basis.x.normalized()
+		
+	if Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_RIGHT):
+		direction += get_global_transform().basis.x.normalized()
 			
 	return direction.normalized()
 
