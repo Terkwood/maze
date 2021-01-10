@@ -1,7 +1,6 @@
 extends KinematicBody
 
 enum Movement { WALK, FLY }
-enum InputHandling { MASTER_MOVE, MASTER_CHAT, PUPPET }
 
 #constants
 const GRAVITY = 9.8
@@ -64,6 +63,8 @@ func _input(event):
 		mouse_motion = event.relative
 	if Input.is_action_just_pressed("ui_home"):
 		_switch_movement()
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit(0)
 
 func _axis():
 	var direction = Vector3()
