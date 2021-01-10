@@ -14,6 +14,14 @@ size = Vector3( 0.2, 0.25, 1.4 )
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
+sensitivity_x = null
+sensitivity_y = null
+speed = null
+jump_height = null
+fly_height = null
+mass = null
+gravity_scl = null
+movement = null
 
 [node name="mesh" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
