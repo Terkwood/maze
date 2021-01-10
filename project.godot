@@ -15,4 +15,5 @@ _global_script_class_icons={
 
 [application]
 
+config/name="maze"
 run/main_scene="res://HedgeMaze.tscn"
