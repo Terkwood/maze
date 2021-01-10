@@ -12,4 +12,4 @@ godot
 
 ## attribution
 
-The first-person controls for this project were taken from the template "First Person Character" by dgilmarj
+The first-person controls for this project were taken from the template "First Person Character" by dgilmarj.
