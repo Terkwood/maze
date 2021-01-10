@@ -30,9 +30,6 @@ var gravity_speed = 0
 
 puppet var puppet_transform
 
-# Disallow input when focused in chat
-var _allow_input = true
-
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	ground_ray.enabled = true
@@ -40,16 +37,13 @@ func _ready():
 	puppet_transform = transform
 
 func _physics_process(delta):
-
-	#camera and body rotation
-	if mode == InputHandling.MASTER_MOVE:
-		rotate_y(deg2rad(20)* - mouse_motion.x * sensitivity_x * delta)
-		var player_cam = get_node_or_null("Camera")
-		if player_cam:
-			player_cam.rotate_x(-1 * deg2rad(20) * - mouse_motion.y * sensitivity_y * delta)
-			player_cam.rotation.x = clamp(player_cam.rotation.x, deg2rad(-47), deg2rad(47))
-			player_hand.rotation.x = lerp(player_hand.rotation.x, player_cam.rotation.x, 0.2)
-		mouse_motion = Vector2()
+	rotate_y(deg2rad(20)* - mouse_motion.x * sensitivity_x * delta)
+	var player_cam = get_node_or_null("Camera")
+	if player_cam:
+		player_cam.rotate_x(-1 * deg2rad(20) * - mouse_motion.y * sensitivity_y * delta)
+		player_cam.rotation.x = clamp(player_cam.rotation.x, deg2rad(-47), deg2rad(47))
+		player_hand.rotation.x = lerp(player_hand.rotation.x, player_cam.rotation.x, 0.2)
+	mouse_motion = Vector2()
 	
 	#gravity
 	gravity_speed -= GRAVITY * gravity_scl * mass * delta
@@ -59,14 +53,12 @@ func _physics_process(delta):
 	velocity = _axis() * speed
 	velocity.y = gravity_speed
 
-	#jump
-	var is_move_ok = mode == InputHandling.MASTER_MOVE
 	if movement == Movement.WALK:
-		if is_move_ok && Input.is_action_just_pressed("space") and ground_ray.is_colliding():
+		if Input.is_action_just_pressed("space") and ground_ray.is_colliding():
 			velocity.y = jump_height
 		gravity_speed = move_and_slide(velocity).y
 	if movement == Movement.FLY:
-		if is_move_ok && Input.is_action_just_pressed("space"):
+		if Input.is_action_just_pressed("space"):
 			velocity.y = fly_height
 			gravity_speed = move_and_slide(velocity).y
 		else:
@@ -108,12 +100,3 @@ func _switch_movement():
 func _update_movement_label():
 	$HUD/VBoxContainer/MovementLabel.text = Movement.keys()[movement]
 
-func _on_chat_focus_grabbed():
-	_allow_input = false
-	rset_unreliable("puppet_transform", transform)
-
-func _on_chat_focus_released():
-	_allow_input = true
-
-func _is_chat_blocking_input():
-	return !_allow_input && is_network_master()
