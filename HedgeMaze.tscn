@@ -24,6 +24,7 @@ script = ExtResource( 1 )
 environment = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 100, 100 )
 
 [node name="Floor" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
