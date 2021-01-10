@@ -9,3 +9,7 @@ You can export the app to Mac, Win, or Linux/X11, or, if you have `godot` instal
 ```sh
 godot
 ```
+
+## attribution
+
+The first-person controls for this project were taken from the template "First Person Character" by dgilmarj
