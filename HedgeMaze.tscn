@@ -14,10 +14,12 @@ ambient_light_sky_contribution = 0.0
 [sub_resource type="OpenSimplexNoise" id=5]
 
 [sub_resource type="NoiseTexture" id=6]
+width = 2048
+height = 2048
 noise = SubResource( 5 )
 
 [sub_resource type="SpatialMaterial" id=7]
-albedo_color = Color( 0.721569, 0.458824, 0.329412, 1 )
+albedo_color = Color( 0.317647, 0.14902, 0.0666667, 1 )
 albedo_texture = SubResource( 6 )
 
 [sub_resource type="CubeMesh" id=8]
@@ -25,7 +27,7 @@ material = SubResource( 7 )
 size = Vector3( 1000, 2, 1000 )
 
 [sub_resource type="BoxShape" id=3]
-extents = Vector3( 500, 1, 500 )
+extents = Vector3( 500, 2, 500 )
 
 [node name="HedgeMaze" type="Spatial"]
 script = ExtResource( 1 )
@@ -37,7 +39,6 @@ environment = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 100, 100 )
 
 [node name="Floor" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Floor"]
 mesh = SubResource( 8 )

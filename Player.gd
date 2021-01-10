@@ -48,11 +48,13 @@ func _physics_process(delta):
 	velocity.y = gravity_speed
 
 	if movement == Movement.WALK:
-		if Input.is_action_just_pressed("space") and ground_ray.is_colliding():
-			velocity.y = jump_height
+		if Input.is_action_just_pressed("ui_accept"):
+			print("space")
+			if ground_ray.is_colliding():
+				velocity.y = jump_height
 		gravity_speed = move_and_slide(velocity).y
 	if movement == Movement.FLY:
-		if Input.is_action_just_pressed("space"):
+		if Input.is_action_just_pressed("ui_accept"):
 			velocity.y = fly_height
 			gravity_speed = move_and_slide(velocity).y
 		else:
