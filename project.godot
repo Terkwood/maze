@@ -17,3 +17,4 @@ _global_script_class_icons={
 
 config/name="maze"
 run/main_scene="res://HedgeMaze.tscn"
+boot_splash/image="res://terkwood_farm.png"

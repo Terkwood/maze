@@ -63,3 +63,7 @@ __meta__ = {
 [node name="MovementLabel" type="Label" parent="HUD/VBoxContainer"]
 margin_right = 40.0
 margin_bottom = 14.0
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4, 0 )
+far = 313.0

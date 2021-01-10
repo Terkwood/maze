@@ -6,7 +6,6 @@ enum InputHandling { MASTER_MOVE, MASTER_CHAT, PUPPET }
 #constants
 const GRAVITY = 9.8
 const FLOAT = 0.93
-const CHAT_PATH = NodePath("/root/Chat")
 
 #mouse sensitivity
 export(float,0.1,1.0) var sensitivity_x = 0.5
@@ -24,6 +23,7 @@ export(Movement) var movement = Movement.WALK
 #instances ref
 onready var player_hand = $Arm
 onready var ground_ray = $GroundRay
+onready var camera = $Camera
 
 var mouse_motion = Vector2()
 var gravity_speed = 0
@@ -35,11 +35,9 @@ func _ready():
 
 func _physics_process(delta):
 	rotate_y(deg2rad(20)* - mouse_motion.x * sensitivity_x * delta)
-	var player_cam = get_node_or_null("Camera")
-	if player_cam:
-		player_cam.rotate_x(-1 * deg2rad(20) * - mouse_motion.y * sensitivity_y * delta)
-		player_cam.rotation.x = clamp(player_cam.rotation.x, deg2rad(-47), deg2rad(47))
-		player_hand.rotation.x = lerp(player_hand.rotation.x, player_cam.rotation.x, 0.2)
+	camera.rotate_x(-1 * deg2rad(20) * - mouse_motion.y * sensitivity_y * delta)
+	camera.rotation.x = clamp(camera.rotation.x, deg2rad(-47), deg2rad(47))
+	player_hand.rotation.x = lerp(player_hand.rotation.x, camera.rotation.x, 0.2)
 	mouse_motion = Vector2()
 	
 	#gravity
