@@ -41,7 +41,7 @@ export(int) var height = width
 # THIS SCENE MUST ALSO EXPOSE A .size() method which returns
 # the dimensions of the body.  The full dimensions of the mesh!
 # NOT the halved extents of a collision shape !
-onready var WallBody = preload("res://prefabs/moss/Moss.tscn")
+onready var WallBody = preload("res://WallBody.tscn")
 
 var _passages_grid = _create_grid(0)
 
